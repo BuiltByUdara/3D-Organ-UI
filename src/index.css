@@ -6,17 +6,17 @@
   --color-card-foreground: var(--foreground);
   --color-popover: var(--background);
   --color-popover-foreground: var(--foreground);
-  --color-primary: #256b55;
-  --color-primary-foreground: #fff;
-  --color-secondary: #edf1ed;
-  --color-secondary-foreground: #243a31;
-  --color-muted: #edf1ed;
-  --color-muted-foreground: #717a73;
-  --color-accent: #e5eee6;
-  --color-accent-foreground: #256b55;
-  --color-border: #dfe5df;
-  --color-input: #dfe5df;
-  --color-ring: #256b55;
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--muted);
+  --color-secondary-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--primary);
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--primary);
   --color-destructive: #bf4545;
   --radius-sm: 6px;
   --radius-md: 8px;
@@ -24,9 +24,17 @@
 }
 :root {
   font-family: Inter, "Segoe UI", sans-serif;
-  color: #25382f;
-  background: #f6f7f3;
+  color: var(--foreground);
+  background: var(--page);
   font-synthesis: none;
+  color-scheme: light;
+  --page: #f6f7f3;
+  --muted: #edf1ed;
+  --muted-foreground: #717a73;
+  --primary: #256b55;
+  --primary-foreground: #fff;
+  --accent: #e5eee6;
+  --border: #dfe5df;
   --background: #fff;
   --foreground: #25382f;
   font-size: 14px;
@@ -79,4 +87,21 @@ p {
 }
 ::selection {
   background: #cde2d2;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #101814;
+  --background: #18231d;
+  --foreground: #e5eee8;
+  --muted: #233229;
+  --muted-foreground: #a9b9ad;
+  --primary: #89d4aa;
+  --primary-foreground: #10261a;
+  --accent: #2c4435;
+  --border: #3b4d40;
+}
+select:focus-visible {
+  outline: 3px solid #80b79d;
+  outline-offset: 3px;
 }

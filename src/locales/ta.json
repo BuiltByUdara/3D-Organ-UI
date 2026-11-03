@@ -319,5 +319,9 @@
   "Explore {name} in 3D. Select a structure to inspect its anatomy, change the camera view, and read its description.": "{name} முப்பரிமாணத்தில் ஆராயுங்கள். ஒரு கட்டமைப்பைத் தேர்ந்தெடுத்து அதன் அமைப்பைப் பாருங்கள், காட்சிக் கோணத்தை மாற்றி விளக்கத்தைப் படியுங்கள்.",
   "Which structure is included in this model?": "இந்த மாதிரியில் இடம்பெறும் கட்டமைப்பு எது?",
   "This model includes {name}. Select it in the structure list to explore it.": "இந்த மாதிரியில் {name} இடம்பெறுகிறது. அதை ஆராய கட்டமைப்புப் பட்டியலில் தேர்ந்தெடுங்கள்.",
-  "Some specialist structure details are shown in English.": "சில சிறப்புக் கட்டமைப்பு விவரங்கள் ஆங்கிலத்தில் காட்டப்படுகின்றன."
+  "Some specialist structure details are shown in English.": "சில சிறப்புக் கட்டமைப்பு விவரங்கள் ஆங்கிலத்தில் காட்டப்படுகின்றன.",
+  "Switch to light theme": "ஒளிர் தோற்றத்திற்கு மாறு",
+  "Switch to dark theme": "இருண்ட தோற்றத்திற்கு மாறு",
+  "Light": "ஒளிர்",
+  "Dark": "இருண்ட"
 }

@@ -729,8 +729,13 @@
 }
 
 /* Independently scroll the expanded catalog and structure list. */
-.organ-button > span:nth-child(2) { min-width: 0; overflow-wrap: anywhere; }
-.organ-button .organ-icon { flex-shrink: 0; }
+.organ-button > span:nth-child(2) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.organ-button .organ-icon {
+  flex-shrink: 0;
+}
 .organ-list {
   overflow-x: hidden;
   max-height: 340px;
@@ -758,3 +763,173 @@
     max-height: 160px;
   }
 }
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 10px;
+  background: var(--background);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  white-space: nowrap;
+}
+.theme-toggle:hover {
+  background: var(--accent);
+}
+:root[data-theme="dark"] .topbar,
+:root[data-theme="dark"] .explorer,
+:root[data-theme="dark"] .study-card,
+:root[data-theme="dark"] .library-empty,
+:root[data-theme="dark"] .controls,
+:root[data-theme="dark"] .secondary {
+  background: var(--background);
+  border-color: var(--border);
+}
+:root[data-theme="dark"]
+  :is(
+    .sidebar,
+    .details,
+    .tabs,
+    .stage-bottom,
+    .stage,
+    .search,
+    .fact,
+    .answer,
+    .learn-card,
+    .pill,
+    .view-select,
+    .language-switcher select
+  ) {
+  border-color: var(--border);
+}
+:root[data-theme="dark"]
+  :is(
+    .brand span:last-child,
+    .nav a,
+    .profile,
+    .eyebrow,
+    .heading p,
+    .section-label,
+    .search,
+    .organ-button small,
+    .organ-button .chevron,
+    .empty,
+    .stage-header small,
+    .live,
+    .stage-bottom,
+    .details-tag,
+    .latin,
+    .tabs button,
+    .description,
+    .fact small,
+    .learn-card p,
+    .footer,
+    .study-card p,
+    .view-select,
+    .library-empty,
+    .translation-note
+  ) {
+  color: var(--muted-foreground);
+}
+:root[data-theme="dark"] :is(.nav a.active, .tabs button.active, .bookmark-on) {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+:root[data-theme="dark"]
+  :is(
+    .search,
+    .fact,
+    .answer,
+    .organ-icon,
+    .avatar,
+    .view-select,
+    .language-switcher select
+  ) {
+  background: var(--muted);
+  color: var(--foreground);
+}
+:root[data-theme="dark"] .search input {
+  color: var(--foreground);
+}
+:root[data-theme="dark"] .search input::placeholder {
+  color: var(--muted-foreground);
+  opacity: 1;
+}
+:root[data-theme="dark"]
+  :is(
+    .organ-button.selected,
+    .structure.active,
+    .answer.chosen,
+    .feedback,
+    .learn-card,
+    .pill,
+    .details-tag
+  ) {
+  background: var(--accent);
+}
+:root[data-theme="dark"] .organ-button.selected {
+  border-color: #577e63;
+}
+:root[data-theme="dark"] :is(.organ-button:hover, .controls button:hover) {
+  background: #2c4032;
+}
+:root[data-theme="dark"] .selected .organ-icon {
+  background: #324d3b;
+}
+:root[data-theme="dark"] .organ-icon {
+  color: #dfab97;
+}
+:root[data-theme="dark"] .divider {
+  background: var(--border);
+}
+:root[data-theme="dark"] .stage {
+  background: radial-gradient(ellipse at center, #293d30 15%, #17221c 100%);
+}
+:root[data-theme="dark"] .avatar {
+  border-color: var(--background);
+  box-shadow: 0 0 0 1px var(--border);
+}
+:root[data-theme="dark"] .primary {
+  background: #85cda3;
+  border-color: #85cda3;
+  color: #10261a;
+}
+:root[data-theme="dark"] .primary:hover {
+  background: #a0dfba;
+}
+:root[data-theme="dark"] .progress {
+  background: var(--muted);
+}
+:root[data-theme="dark"] .progress div {
+  background: var(--primary);
+}
+:root[data-theme="dark"] .bookmark-on {
+  fill: #375e44;
+}
+:root[data-theme="dark"] .study-card .icon-btn svg {
+  fill: #375e44;
+}
+:root[data-theme="dark"] .study-card svg[color] {
+  color: var(--primary);
+}
+:root[data-theme="dark"] input[type="checkbox"] {
+  accent-color: #85cda3;
+}
+:root[data-theme="dark"] ::selection {
+  background: #456c53;
+  color: #fff;
+}
+@media (max-width: 400px) {
+  .theme-toggle span {
+    display: none;
+  }
+  .profile {
+    gap: 6px;
+  }
+  .profile .avatar {
+    display: none;
+  }
+}
+:root[data-theme="dark"] .pill { color: var(--muted-foreground); }

@@ -21,6 +21,8 @@ The production output is in `dist/`. Hash-based routing supports static hosting 
 
 ## Features
 
+- Dark theme by default, with a translated light/dark switch in the header. The preference is saved on this device and applied before the app renders.
+
 - All 42 models from the OrganUI organs catalog, including liver, stomach, intestines, eye, ear, skeleton, skin, glands, and reproductive organs.
 - Search organs and the current organ's structures.
 - Select structures in the viewer or sidebar, toggle visibility, rotate, zoom, choose named views, and reset.

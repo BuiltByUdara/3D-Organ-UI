@@ -319,5 +319,9 @@
   "Explore {name} in 3D. Select a structure to inspect its anatomy, change the camera view, and read its description.": "{name} ත්‍රිමාණව ගවේෂණය කරන්න. ව්‍යුහයක් තෝරා එය අධ්‍යයනය කරන්න, දර්ශන කෝණය වෙනස් කරන්න, විස්තර කියවන්න.",
   "Which structure is included in this model?": "මෙම ආකෘතියේ ඇතුළත් ව්‍යුහය කුමක්ද?",
   "This model includes {name}. Select it in the structure list to explore it.": "මෙම ආකෘතියේ {name} ඇතුළත් වේ. ගවේෂණයට එය ව්‍යුහ ලැයිස්තුවෙන් තෝරන්න.",
-  "Some specialist structure details are shown in English.": "ඇතැම් විශේෂිත ව්‍යුහ විස්තර ඉංග්‍රීසියෙන් දැක්වේ."
+  "Some specialist structure details are shown in English.": "ඇතැම් විශේෂිත ව්‍යුහ විස්තර ඉංග්‍රීසියෙන් දැක්වේ.",
+  "Switch to light theme": "ලා වර්ණ තේමාවට මාරු වන්න",
+  "Switch to dark theme": "අඳුරු තේමාවට මාරු වන්න",
+  "Light": "ලා වර්ණ",
+  "Dark": "අඳුරු"
 }

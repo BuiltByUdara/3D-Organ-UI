@@ -1,4 +1,5 @@
 import { organs, type Organ } from "./organs";
+import { useTheme } from "./theme";
 import {
   hasTranslation,
   useTranslation,
@@ -32,6 +33,8 @@ import {
   RotateCcw,
   Search,
   Sparkles,
+  Sun,
+  Moon,
 } from "lucide-react";
 import {
   OrganViewer,
@@ -500,6 +503,7 @@ function Collection({ savedOnly = false }: { savedOnly?: boolean }) {
   );
 }
 export default function App() {
+  const { theme, toggleTheme } = useTheme();
   const { language, t } = useTranslation();
   const setLanguage = useLanguage((s) => s.setLanguage);
   useEffect(() => {
@@ -536,6 +540,23 @@ export default function App() {
               </NavLink>
             </nav>
             <div className="profile">
+              <button
+                className="theme-toggle"
+                onClick={toggleTheme}
+                aria-label={
+                  theme === "dark"
+                    ? t("Switch to light theme")
+                    : t("Switch to dark theme")
+                }
+                title={
+                  theme === "dark"
+                    ? t("Switch to light theme")
+                    : t("Switch to dark theme")
+                }
+              >
+                {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
+                <span>{theme === "dark" ? t("Light") : t("Dark")}</span>
+              </button>
               <label className="language-switcher">
                 <span className="sr-only">{t("Language")}</span>
                 <select
