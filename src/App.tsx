@@ -1,4 +1,11 @@
-import { useTranslation, useLanguage, languages, isLanguage } from "./i18n";
+import { organs, type Organ } from "./organs";
+import {
+  hasTranslation,
+  useTranslation,
+  useLanguage,
+  languages,
+  isLanguage,
+} from "./i18n";
 import { useEffect, useRef, useState } from "react";
 import {
   HashRouter,
@@ -10,18 +17,14 @@ import {
   useParams,
 } from "react-router-dom";
 import {
-  Activity,
   ArrowRight,
   BookOpen,
   Bookmark,
-  Brain,
   Check,
   ChevronRight,
   Compass,
   GraduationCap,
-  Heart,
   Layers,
-  Leaf,
   Maximize,
   Minus,
   MousePointer2,
@@ -30,10 +33,6 @@ import {
   Search,
   Sparkles,
 } from "lucide-react";
-import { heartModel } from "./components/heart";
-import { brainModel } from "./components/brain";
-import { lungsModel } from "./components/lungs";
-import { kidneysModel } from "./components/kidneys";
 import {
   OrganViewer,
   organDefaultVisibility,
@@ -42,74 +41,6 @@ import {
 import { TooltipProvider } from "./components/ui/tooltip";
 import { useStudy } from "./store";
 import "./App.css";
-
-const organs = [
-  {
-    id: "heart",
-    model: heartModel,
-    icon: Heart,
-    system: "Cardiovascular system",
-    latin: "Cor",
-    description:
-      "Explore the chambers, muscular walls, and major vessels of the heart. Follow the structures that receive blood and direct it toward the lungs and the rest of the body.",
-    focus: "Blood circulation",
-    region: "Thorax",
-    question: "Which chamber receives oxygen-rich blood from the lungs?",
-    answers: ["Right atrium", "Left atrium", "Right ventricle"],
-    correct: 1,
-    explanation:
-      "The left atrium receives blood from the lungs and passes it to the left ventricle.",
-  },
-  {
-    id: "brain",
-    model: brainModel,
-    icon: Brain,
-    system: "Nervous system",
-    latin: "Encephalon",
-    description:
-      "Explore the brain from multiple perspectives. Select individual structures to understand their position and discover how the regions fit together.",
-    focus: "Neural coordination",
-    region: "Head",
-    question: "Which system does the brain belong to?",
-    answers: ["Respiratory system", "Urinary system", "Nervous system"],
-    correct: 2,
-    explanation:
-      "The brain is part of the central nervous system, together with the spinal cord.",
-  },
-  {
-    id: "lungs",
-    model: lungsModel,
-    icon: Activity,
-    system: "Respiratory system",
-    latin: "Pulmones",
-    description:
-      "Explore the paired lungs and their structures. Rotate the model to compare their shape and investigate the anatomy of the respiratory system.",
-    focus: "Gas exchange",
-    region: "Thorax",
-    question: "What is the primary role of the lungs?",
-    answers: ["Gas exchange", "Pumping blood", "Filtering blood into urine"],
-    correct: 0,
-    explanation:
-      "The lungs exchange oxygen and carbon dioxide between air and blood.",
-  },
-  {
-    id: "kidneys",
-    model: kidneysModel,
-    icon: Leaf,
-    system: "Urinary system",
-    latin: "Renes",
-    description:
-      "Explore the kidneys in three dimensions. Select the structures in the anatomy list to study their spatial relationships and read their descriptions.",
-    focus: "Filtration",
-    region: "Abdomen",
-    question: "Which system includes the kidneys?",
-    answers: ["Nervous system", "Urinary system", "Respiratory system"],
-    correct: 1,
-    explanation:
-      "The kidneys are part of the urinary system and filter blood to form urine.",
-  },
-];
-type Organ = (typeof organs)[number];
 
 function ExplorerRoute() {
   const { id } = useParams();
@@ -121,7 +52,7 @@ function ExplorerRoute() {
   );
 }
 function Explorer({ organ }: { organ: Organ }) {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const viewer = useRef<OrganViewerHandle>(null);
   const stage = useRef<HTMLDivElement>(null);
   const [query, setQuery] = useState("");
@@ -133,6 +64,11 @@ function Explorer({ organ }: { organ: Organ }) {
   const [tab, setTab] = useState<"overview" | "review">("overview");
   const [answer, setAnswer] = useState<number | null>(null);
   const { saved, toggleSaved, completed, complete } = useStudy();
+  const hasEnglishDetails = organ.model.structures.some(
+    (s) =>
+      !hasTranslation(language, s.label) ||
+      (s.description && !hasTranslation(language, s.description)),
+  );
   const structure = organ.model.structures.find((s) => s.id === selected);
   const matches = organs.filter((o) =>
     (o.model.name + " " + o.system + " " + t(o.model.name) + " " + t(o.system))
@@ -164,7 +100,7 @@ function Explorer({ organ }: { organ: Organ }) {
       <div className="explorer">
         <aside className="sidebar">
           <div className="section-label">
-            {t("ORGAN LIBRARY")} <span>04</span>
+            {t("ORGAN LIBRARY")} <span>{organs.length}</span>
           </div>
           <label className="search">
             <Search size={15} />
@@ -203,6 +139,11 @@ function Explorer({ organ }: { organ: Organ }) {
             {t("STRUCTURES")}{" "}
             <span>{structures.length.toString().padStart(2, "0")}</span>
           </div>
+          {hasEnglishDetails && (
+            <p className="translation-note">
+              {t("Some specialist structure details are shown in English.")}
+            </p>
+          )}
           <div className="structure-list">
             {structures.map((s) => (
               <div
@@ -218,6 +159,7 @@ function Explorer({ organ }: { organ: Organ }) {
                 </button>
                 <input
                   type="checkbox"
+                  style={{ marginRight: 10 }}
                   aria-label={t("Show {name}", { name: t(s.label) })}
                   checked={visibility[s.id] !== false}
                   onChange={(e) => {
@@ -342,7 +284,9 @@ function Explorer({ organ }: { organ: Organ }) {
           </div>
           {tab === "overview" ? (
             <>
-              <p className="description">{t(organ.description)}</p>
+              <p className="description">
+                {t(organ.description, { name: t(organ.model.name) })}
+              </p>
               <h3>{t("At a glance")}</h3>
               <div className="facts">
                 <div className="fact">
@@ -438,7 +382,9 @@ function Explorer({ organ }: { organ: Organ }) {
                   </strong>
                   <br />
                   {answer === organ.correct
-                    ? t(organ.explanation)
+                    ? t(organ.explanation, {
+                        name: t(organ.answers[organ.correct]),
+                      })
                     : t("Revisit the overview, then choose another answer.")}
                 </div>
               )}
@@ -502,7 +448,11 @@ function Collection({ savedOnly = false }: { savedOnly?: boolean }) {
             total: organs.length,
           })}
         >
-          <div style={{ width: `${(completed.length / 4) * 100}%` }} />
+          <div
+            style={{
+              width: `${(completed.filter((id) => organs.some((o) => o.id === id)).length / organs.length) * 100}%`,
+            }}
+          />
         </div>
       )}
       <div className="study-grid">
@@ -526,7 +476,7 @@ function Collection({ savedOnly = false }: { savedOnly?: boolean }) {
               )}
             </div>
             <h2>{t(o.model.name)}</h2>
-            <p>{t(o.description)}</p>
+            <p>{t(o.description, { name: t(o.model.name) })}</p>
             <Link className="primary" to={"/explore/" + o.id}>
               {completed.includes(o.id)
                 ? t("Explore again")

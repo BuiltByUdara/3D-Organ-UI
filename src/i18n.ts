@@ -32,6 +32,9 @@ const dictionaries: Record<Language, Record<string, string>> = {
   si,
   ta,
 };
+export function hasTranslation(language: Language, text: string) {
+  return language === "en" || Object.hasOwn(dictionaries[language], text);
+}
 export function translate(
   language: Language,
   text: string,

@@ -21,14 +21,14 @@ The production output is in `dist/`. Hash-based routing supports static hosting 
 
 ## Features
 
-- Four real 3D models: heart, brain, lungs, and kidneys.
+- All 42 models from the OrganUI organs catalog, including liver, stomach, intestines, eye, ear, skeleton, skin, glands, and reproductive organs.
 - Search organs and the current organ's structures.
 - Select structures in the viewer or sidebar, toggle visibility, rotate, zoom, choose named views, and reset.
 - Organ overviews and structure descriptions from the installed model metadata.
-- One introductory knowledge check per organ.
+- One introductory knowledge check per organ. Added organs use structure-recognition questions generated from their model metadata.
 - Bookmarks and completed reviews persisted to local storage on the current device.
 - Responsive explorer, learning space, and saved collection.
-- English, Sinhala, and Tamil language selector with a saved device preference. Navigation, lessons, quizzes, structure labels/descriptions, and viewer messages are translated. Search accepts English and the selected language; original model credits and Latin names are preserved.
+- English, Sinhala, and Tamil language selector with a saved device preference. Navigation, organ names, overview summaries, quiz prompts, and viewer messages are translated. The original four organs retain full structure translations; untranslated specialist details in the expanded catalog fall back to English with a visible notice. Search accepts English and the selected language. Original model credits are preserved.
 - Keyboard model interaction and built-in loading/error/retry states supplied by OrganUI.
 
 ## Assets and attribution
@@ -41,7 +41,8 @@ This is an educational starter, not a diagnostic tool or a comprehensive anatomy
 
 ## Project layout
 
-- `src/App.tsx`: routing, explorer, organ summaries, review questions, collections.
+- `src/App.tsx`: routing, explorer, and collections.
+- `src/organs.ts`: the 42-model catalog, organ summaries, and review questions.
 - `src/store.ts`: persisted bookmarks and review completion.
 - `src/components/`: installed OrganUI models and shared viewer.
 - `src/components/ui/`: generated Base UI components.
@@ -51,5 +52,7 @@ This is an educational starter, not a diagnostic tool or a comprehensive anatomy
 ## Validation notes
 
 Run `node --test tests/localization.test.mjs` to check translation coverage and interpolation parameters. Translation resources are in `src/locales/si.json` and `src/locales/ta.json`; English source strings are the fallback. Language state and translation helpers are in `src/i18n.ts`.
+
+Run `node --test tests/catalog.test.mjs` to validate all 42 model registrations, view targets, quiz answers, and translated catalog content. Run `node scripts/check-models.mjs` for an online check of model URL availability and CORS headers.
 
 Production compilation and lint were run successfully. Generated components produce Fast Refresh export warnings. The 3D dependency contributes a large production JavaScript chunk; route splitting is a future optimization. Browser smoke checks verified heart rendering and correct-answer completion.

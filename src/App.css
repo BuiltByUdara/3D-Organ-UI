@@ -727,3 +727,34 @@
     flex-wrap: wrap;
   }
 }
+
+/* Independently scroll the expanded catalog and structure list. */
+.organ-button > span:nth-child(2) { min-width: 0; overflow-wrap: anywhere; }
+.organ-button .organ-icon { flex-shrink: 0; }
+.organ-list {
+  overflow-x: hidden;
+  max-height: 340px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+.structure-list {
+  max-height: 300px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+.translation-note {
+  font-size: 10px;
+  line-height: 1.7;
+  color: #798871;
+  margin: 0 5px 10px;
+}
+@media (max-width: 680px) {
+  .organ-list {
+    max-height: 250px;
+  }
+  .structure-list {
+    max-height: 160px;
+  }
+}
