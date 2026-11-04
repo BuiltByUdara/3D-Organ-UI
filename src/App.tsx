@@ -1,5 +1,6 @@
 import { organs, type Organ } from "./organs";
 import { useTheme } from "./theme";
+import { SponsorBanner } from "./components/sponsor-banner";
 import {
   hasTranslation,
   useTranslation,
@@ -580,6 +581,7 @@ export default function App() {
             </div>
           </header>
           <main className="workspace">
+            <SponsorBanner />
             <Routes>
               <Route path="/explore/:id" element={<ExplorerRoute />} />
               <Route path="/learn" element={<Collection />} />

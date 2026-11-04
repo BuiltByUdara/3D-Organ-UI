@@ -21,6 +21,8 @@ The production output is in `dist/`. Hash-based routing supports static hosting 
 
 ## Features
 
+- A responsive AdSense banner below the header. Set `publisherId` and `slotId` in `src/config/banner.ts` from your responsive display ad code. Development and localhost show a labeled layout preview without loading Google scripts, even when IDs are configured. Production on a deployed domain uses the real ad unit; it hides the slot if either ID is missing. Set `enabled: false` to disable it. The banner stays mounted between routes and does not auto-refresh.
+
 - Dark theme by default, with a translated light/dark switch in the header. The preference is saved on this device and applied before the app renders.
 
 - All 42 models from the OrganUI organs catalog, including liver, stomach, intestines, eye, ear, skeleton, skin, glands, and reproductive organs.
@@ -58,3 +60,5 @@ Run `node --test tests/localization.test.mjs` to check translation coverage and 
 Run `node --test tests/catalog.test.mjs` to validate all 42 model registrations, view targets, quiz answers, and translated catalog content. Run `node scripts/check-models.mjs` for an online check of model URL availability and CORS headers.
 
 Production compilation and lint were run successfully. Generated components produce Fast Refresh export warnings. The 3D dependency contributes a large production JavaScript chunk; route splitting is a future optimization. Browser smoke checks verified heart rendering and correct-answer completion.
+
+AdSense banner implementation follows https://support.google.com/adsense/answer/9183460. The build for this addition has not been run because the command was declined. Actual ad serving requires your own configured AdSense account and ad unit.
