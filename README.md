@@ -21,6 +21,8 @@ The production output is in `dist/`. Hash-based routing supports static hosting 
 
 ## Features
 
+- Confirmed unfilled AdSense banners collapse automatically using Google's `data-ad-status="unfilled"` attribute. Pending and filled ads remain visible; a blank screenshot alone cannot establish whether Google has returned an ad.
+
 - A responsive AdSense banner below the header. Set `publisherId` and `slotId` in `src/config/banner.ts` from your responsive display ad code. Development and localhost show a labeled layout preview without loading Google scripts, even when IDs are configured. Production on a deployed domain uses the real ad unit; it hides the slot if either ID is missing. Set `enabled: false` to disable it. The banner stays mounted between routes and does not auto-refresh.
 
 - Dark theme by default, with a translated light/dark switch in the header. The preference is saved on this device and applied before the app renders.
