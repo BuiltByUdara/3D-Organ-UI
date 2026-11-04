@@ -589,9 +589,11 @@ export default function App() {
                 element={<Navigate to="/explore/heart" replace />}
               />
             </Routes>
+            <FooterAd />
           </main>
         </div>
       </TooltipProvider>
     </HashRouter>
   );
 }
+import { FooterAd } from "./components/footer-ad";

@@ -935,3 +935,29 @@
 :root[data-theme="dark"] .pill {
   color: var(--muted-foreground);
 }
+.footer-ad {
+  width: 100%;
+  max-width: 1100px;
+  margin: 36px auto 0;
+  min-height: 120px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--background);
+}
+.footer-ad-label {
+  padding: 8px 16px;
+  color: var(--muted-foreground);
+  font-size: 10px;
+}
+.footer-ad-preview {
+  display: grid;
+  place-items: center;
+  min-height: 100px;
+  color: var(--muted-foreground);
+  background: var(--muted);
+  border-radius: 0 0 12px 12px;
+  font-size: 12px;
+}
+.footer-ad:has(.adsbygoogle[data-ad-status="unfilled"]) {
+  display: none;
+}
